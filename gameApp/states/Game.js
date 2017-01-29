@@ -41,7 +41,10 @@ var GameState = {
         bullet.body.velocity.y = 1000 - (size * 5);
         this.meteors.add(bullet);
         this.score++;
+        
     };
+
+    game.input.addPointer();
   },
 
     //Score Update
@@ -54,15 +57,36 @@ var GameState = {
       item.angle += 0.25;
     }
 
+    //Mouse Controls
+    var mouse = game.input.mousePointer;
+    var point = game.input.pointer1;
+    var pos = this.alex.x;
     //Movement Check
     this.alex.body.velocity.x = 0;
     //TODO: Add dynamic speed relative to screen size
+    var speed = 600;
+
+
     if (this.cursors.left.isDown) {
-        this.alex.body.velocity.x = -600;
+        this.alex.body.velocity.x = -speed;
     } else if (this.cursors.right.isDown) {
-        this.alex.body.velocity.x = 600;
+        this.alex.body.velocity.x = speed;
     }
-    
+
+    //Mouse Controls
+    if (point.x < pos && point.isDown) {
+      this.alex.body.velocity.x = -speed;
+    } else if (point.x > pos && point.isDown) {
+      this.alex.body.velocity.x = speed;
+    }
+
+    //Touch Controls
+    if (mouse.x < pos && mouse.isDown) {
+      this.alex.body.velocity.x = -speed;
+    } else if (mouse.x > pos && mouse.isDown) {
+      this.alex.body.velocity.x = speed;
+    }
+
     //Death Check
     this.game.physics.arcade.overlap(this.meteors, this.alex, collision, null, this);
 
@@ -72,6 +96,6 @@ var GameState = {
       player.kill();
       // this.state.start('Loss', true, false, this.score);
     }
-  }
-  
+  },
+
 };

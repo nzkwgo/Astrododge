@@ -1,22 +1,10 @@
-import Phaser from 'phaser';
+//Asset Declarations
 
-
-//Assets
-import space from '../assets/space.png';
-import spaceAlex from '../assets/spaceAlex.png';
-import meteor from '../assets/meteor.png';
-
-export default class extends Phaser.State {
-
-  preload () {
-    this.load.image('space', space);
-    this.load.image('spaceAlex', spaceAlex);
-    this.load.image('meteor', meteor);
-  };
-
+//Game State
+var GameState = {
   //Generates game objects for play state
-  create () {
-    var background = this.game.add.sprite(0, 0, 'space');
+  create: function () {
+    var background = this.game.add.sprite(0, 0, 'background');
     background.height = this.game.height;
 
     //Set the score to 0 and put it on the screen
@@ -52,10 +40,10 @@ export default class extends Phaser.State {
         this.meteors.add(bullet);
         this.score++;
     };
-  }
+  },
 
     //Score Update
-  update () {
+  update: function () {
     this.scoreText.text = 'Score: ' + Math.round(this.score);
 
     //Meteor Spin
@@ -79,8 +67,8 @@ export default class extends Phaser.State {
     function collision(bullet, player) {
       bullet.kill();
       player.kill();
-      this.state.start('Loss', true, false, this.score);
+      // this.state.start('Loss', true, false, this.score);
     }
   }
   
-}
+};

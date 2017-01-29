@@ -1,21 +1,18 @@
-import Phaser from 'phaser';
-
-import Game from './Game.js';
-
-import firebase from 'firebase';
+//import firebase from 'firebase';
 
 var database = firebase.database();
 var scoresData = database.ref('Scores');
 
 //Assets
 
-export default class extends Phaser.State {
-    init (score) {
+//Loss State
+var LossState = {
+    init: function (score) {
         this.scoreValue = score;
-    }
+    },
 
     //Generates a page for the user to upload a new highscore
-    create () {
+    create: function () {
         var background = this.game.add.sprite(0, 0, 'space');
         background.height = this.game.height;
         var button = this.game.add.button(this.game.world.centerX - 100, 100, 'start', start,this);
@@ -73,13 +70,11 @@ export default class extends Phaser.State {
             this.userName = '';
             this.state.start('Game');
         }
-    }
+    },
 
     // user name displays in real time
-    update() {
+    update: function () {
         this.nameText.text = 'Submit Name to Leaderboard:\n ' + this.userName + '\n(Submits on New Game)';
 
     }
-
-    render () {}
-    }
+}

@@ -13,9 +13,10 @@ var LossState = {
 
     //Generates a page for the user to upload a new highscore
     create: function () {
-        var background = this.game.add.sprite(0, 0, 'space');
-        background.height = this.game.height;
-        var button = this.game.add.button(this.game.world.centerX - 100, 100, 'start', start,this);
+        var background = game.add.sprite(0, 0, 'space');
+        background.height = game.height;
+        background.width = game.width;
+        var button = game.add.button(game.world.centerX - 100, 100, 'start', start,this);
         button.angle = -30;
 
         this.userName = ''; //Initializes name

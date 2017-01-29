@@ -6,15 +6,17 @@ var GameState = {
   create: function () {
     var background = this.game.add.sprite(0, 0, 'background');
     background.height = this.game.height;
+    background.width = this.game.width;
 
     //Set the score to 0 and put it on the screen
     this.score = 0;
-    this.scoreText = this.game.add.text(15, 15, 'score: 0', {fontsize: '32px', fill: '#ffffff'});
-
+    var scoreStyle = {font: "50px Futura", fill: "#ffffff"};
+    this.scoreText = this.game.add.text(15, 15, 'score: 0', scoreStyle);
+    
     this.cursors = this.game.input.keyboard.createCursorKeys();
 
     //Spawns the Player
-    this.alex = this.game.add.sprite(350, 1000, 'spaceAlex');
+    this.alex = this.game.add.sprite(game.world.centerX, game.world.height, 'spaceAlex');
     this.alex.height = 200;
     this.alex.width = 100;
     this.game.physics.arcade.enable(this.alex);
@@ -54,6 +56,7 @@ var GameState = {
 
     //Movement Check
     this.alex.body.velocity.x = 0;
+    //TODO: Add dynamic speed relative to screen size
     if (this.cursors.left.isDown) {
         this.alex.body.velocity.x = -600;
     } else if (this.cursors.right.isDown) {

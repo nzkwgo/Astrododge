@@ -1,4 +1,2 @@
 
-//Generates game 
-alert('hello')
-var game = new Phaser.Game(800, 600, Phaser.AUTO, "game");
+var game = new Phaser.Game(640, 480, Phaser.Auto, 'game');

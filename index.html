@@ -2,30 +2,17 @@
 <html lang="en"> 
 <head> 
 	<meta charset="UTF-8" />
-	<title>Phaser - Making your first game, part 1</title>
+	<title>Astrododge</title>
 	<script type="text/javascript" src="node_modules/phaser/build/phaser.min.js"></script>
-    <style type="text/css">
-        body {
-            margin: 0;
-        }
-    </style>
+	<!--Game States-->
+	<script type="text/javascript" src="gameApp/states/Load.js"></script>
+	<script type="text/javascript" src="gameApp/states/Menu.js"></script>
+	<script type="text/javascript" src="gameApp/states/Game.js"></script>
+	<!--<script type="text/javascript" src="gameApp/states/Loss.js"></script>-->
+
 </head>
 <body>
-
-<script type="text/javascript">
-
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
-
-function preload() {
-}
-
-function create() {
-}
-
-function update() {
-}
-
-</script>
-
+    <div id="game"></div>
+    <script type="text/javascript" src="gameApp/main.js"></script>
 </body>
 </html>

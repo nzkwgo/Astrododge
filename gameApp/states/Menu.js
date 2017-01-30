@@ -22,6 +22,8 @@ var MenuState =  {
 
     var leaderboard = game.add.text(game.world.centerX, game.world.centerY + 80, "Leaderboard", option);
     leaderboard.anchor.set(0.5);
+    leaderboard.inputEnabled = true;
+    leaderboard.events.onInputDown.add(goLeaderboard);
 
     var credits = game.add.text(game.world.centerX, game.world.centerY + 160, "Credits", option);
     credits.anchor.set(0.5);
@@ -34,6 +36,10 @@ var MenuState =  {
 
     function goGame() {
         game.state.start('Game');
+    }
+
+    function goLeaderboard() {
+        game.state.start('Leaderboard');
     }
 
   }

@@ -23,20 +23,18 @@ var LeaderboardState =  {
     //Function for reading list of firebase data
     //There are two event listening functions, because we couldnt get either of them to work independently. 
     //Setting key id guarantees that there isnt duplicate information displayed, even though having two listeners puts duplicate data into our arrays
-    scoresData.orderByChild("ScoreValue").limitToLast(50).on('child_added', function(snapshot) {
-                    var highScore = {UserName: snapshot.val().UserName, ScoreValue: snapshot.val().ScoreValue, keyID: snapshot.key};
-                    names.push(snapshot.val().UserName);
-                    scores.push(snapshot.val().ScoreValue);
-                    currentScores.push(highScore);
+    scoresData.orderByChild("ScoreValue").limitToLast(50).once('value', function(snap) {
+                    snap.forEach(function(snapshot) {
+
+                    
+                    
+                        var highScore = {UserName: snapshot.val().UserName, ScoreValue: snapshot.val().ScoreValue, keyID: snapshot.key};
+                        names.push(snapshot.val().UserName);
+                        scores.push(snapshot.val().ScoreValue);
+                        currentScores.push(highScore);
+                    });
                 });        
 
-    // currentScores.sort(function(entry1, entry2) {
-    //     if(entry1.ScoreValue !== entry2.ScoreValue) {
-    //         return entry2.ScoreValue - entry1.ScoreValue;
-    //     } else {
-    //         return entry1.UserName - entry2.UserName;
-    //     }
-    // });
 
     function scoreCompare(p, q) {
         if (p < q) {
